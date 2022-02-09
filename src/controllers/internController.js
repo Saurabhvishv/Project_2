@@ -44,7 +44,7 @@
 
          //mobile validation
          if (!(/^\d{10}$/.test(mobile))) {
-             res.status(400).send({ status: false, message: `Mobile number should be a valid email address` })
+             res.status(400).send({ status: false, message: `Mobile number should be a valid` })
              return
          }
 
@@ -73,10 +73,8 @@
          }
          // console.log(college)
          const iD = college._id
-         //console.log(requestBody)
          let collegeId = iD
          requestBody.collegeId = iD
-         //console.log(requestBody)
 
          const internData = { name, email, mobile, collegeId }
          const newIntern = await InternModel.create(internData)
