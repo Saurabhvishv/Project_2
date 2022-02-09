@@ -73,10 +73,10 @@
          }
          // console.log(college)
          const iD = college._id
-         console.log(requestBody)
+         //console.log(requestBody)
          let collegeId = iD
          requestBody.collegeId = iD
-         console.log(requestBody)
+         //console.log(requestBody)
 
          const internData = { name, email, mobile, collegeId }
          const newIntern = await InternModel.create(internData)

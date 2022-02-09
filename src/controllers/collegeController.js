@@ -22,7 +22,6 @@ const registerCollege = async function(req, res) {
             }
             //Extract params
             const { name, fullName, logoLink } = requestBody; //destructuring
-
             // Validation starts
             if (!isValid(name, "string")) {
                 res.status(400).send({ status: false, message: 'Name is required or invalid name' })
@@ -41,7 +40,6 @@ const registerCollege = async function(req, res) {
             if (isNameAlreadyUsed) {
                 res.status(400).send({ status: false, message: `${name} college is already registered` })
             }
-
             const collegeData = { name, fullName, logoLink } //
             const newCollege = await CollegeModel.create(collegeData)
 
@@ -53,7 +51,7 @@ const registerCollege = async function(req, res) {
     //***************************************************GET COLLEGE DETAILS */********************* */
 
 
-//API - 3 Get college details
+//API - 2 Get college details
 
 const collegeDetails = async function(req, res) {
     try {
@@ -81,7 +79,6 @@ const collegeDetails = async function(req, res) {
         const ID = collegedetail._id
         console.log(ID)
         const interns = await internModel.find({ collegeId: ID, isDeleted: false }).select({ name: 1, email: 1, mobile: 1 })
-            //console.log(interns)
         if (interns.length === 0) {
             let arr = {
                 name: collegedetail.name,
@@ -89,8 +86,6 @@ const collegeDetails = async function(req, res) {
                 logoLink: collegedetail.logoLink,
                 interns: "No one apllied in this college"
             }
-
-            // []
             return res.status(200).send({ status: true, data: arr })
         }else{
         let arr = {
